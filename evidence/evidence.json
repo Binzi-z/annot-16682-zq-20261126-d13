@@ -1,0 +1,2472 @@
+{
+  "cycle_checks": [
+    {
+      "check_id": "CYCLE1_SOURCELESS_RING",
+      "cycle_reachable_from_original_shift": false,
+      "cyclic_components_accounts": [
+        [
+          "acct.ring.a",
+          "acct.ring.b",
+          "acct.ring.c"
+        ]
+      ],
+      "effective_accounts": [],
+      "expected_rooted_cycle": false,
+      "minute_utc": "2026-11-27T00:10:00Z",
+      "org": "org.ring",
+      "passed": true,
+      "role": "intake",
+      "rule": "Least fixed point starts from active shifts only; an unrooted SCC stays outside the closure.",
+      "seat_produced": false
+    },
+    {
+      "check_id": "CYCLE2_ROOTED_MUTUAL_BATCH",
+      "cycle_reachable_from_original_shift": true,
+      "cyclic_components_accounts": [
+        [
+          "acct.mutual.x",
+          "acct.mutual.y"
+        ]
+      ],
+      "effective_accounts": [
+        "acct.mutual.root",
+        "acct.mutual.x",
+        "acct.mutual.y"
+      ],
+      "expected_rooted_cycle": true,
+      "minute_utc": "2026-11-27T00:15:00Z",
+      "org": "org.mutual",
+      "passed": true,
+      "role": "approval",
+      "rule": "Least fixed point starts from active shifts only; an unrooted SCC stays outside the closure.",
+      "seat_produced": true
+    }
+  ],
+  "decisions": [
+    {
+      "anchor": "at",
+      "case_id": "C1_CROSSDAY_DUAL_DUTY_SHARED_CONTROLLER",
+      "claim": {
+        "approval_actor": "acct.harbor.shen",
+        "at": "2026-11-27T00:07:00Z",
+        "case_id": "C1_CROSSDAY_DUAL_DUTY_SHARED_CONTROLLER",
+        "expected": "APPROVED",
+        "intake_actor": "acct.harbor.lin",
+        "org": "org.harbor"
+      },
+      "decision_minute_utc": "2026-11-27T00:07:00Z",
+      "distinct_acting_accounts": true,
+      "expected_verdict": "APPROVED",
+      "matches_expected": true,
+      "minute_graph": {
+        "active_delegations": [
+          {
+            "batch": "batch.harbor.approval-a",
+            "delegate": "acct.harbor.wu",
+            "delegator": "acct.harbor.controller",
+            "end": "2026-11-27T01:00:00Z",
+            "id": "del.harbor.approval.controller-to-wu",
+            "org": "org.harbor",
+            "role": "approval",
+            "start": "2026-11-26T23:00:00Z"
+          },
+          {
+            "batch": "batch.harbor.approval-b",
+            "delegate": "acct.harbor.zheng",
+            "delegator": "acct.harbor.controller",
+            "end": "2026-11-27T00:45:00Z",
+            "id": "del.harbor.approval.controller-to-zheng",
+            "org": "org.harbor",
+            "role": "approval",
+            "start": "2026-11-26T23:15:00Z"
+          },
+          {
+            "batch": "batch.harbor.approval-a",
+            "delegate": "acct.harbor.shen",
+            "delegator": "acct.harbor.wu",
+            "end": "2026-11-27T01:00:00Z",
+            "id": "del.harbor.approval.wu-to-shen",
+            "org": "org.harbor",
+            "role": "approval",
+            "start": "2026-11-26T23:00:00Z"
+          },
+          {
+            "batch": "batch.harbor.approval-b",
+            "delegate": "acct.harbor.shen",
+            "delegator": "acct.harbor.zheng",
+            "end": "2026-11-27T00:45:00Z",
+            "id": "del.harbor.approval.zheng-to-shen",
+            "org": "org.harbor",
+            "role": "approval",
+            "start": "2026-11-26T23:15:00Z"
+          },
+          {
+            "batch": "batch.harbor.intake-handover",
+            "delegate": "acct.harbor.lin",
+            "delegator": "acct.harbor.chen",
+            "end": "2026-11-27T00:30:00Z",
+            "id": "del.harbor.intake.chen-to-lin",
+            "org": "org.harbor",
+            "role": "intake",
+            "start": "2026-11-26T23:30:00Z"
+          },
+          {
+            "batch": "batch.harbor.intake-handover",
+            "delegate": "acct.harbor.chen",
+            "delegator": "acct.harbor.controller",
+            "end": "2026-11-27T00:30:00Z",
+            "id": "del.harbor.intake.controller-to-chen",
+            "org": "org.harbor",
+            "role": "intake",
+            "start": "2026-11-26T23:30:00Z"
+          }
+        ],
+        "active_shifts": [
+          {
+            "account": "acct.harbor.controller",
+            "end": "2026-11-27T02:00:00Z",
+            "id": "shift.harbor.approval.controller",
+            "org": "org.harbor",
+            "role": "approval",
+            "start": "2026-11-26T22:00:00Z"
+          },
+          {
+            "account": "acct.harbor.controller",
+            "end": "2026-11-27T02:00:00Z",
+            "id": "shift.harbor.intake.controller",
+            "org": "org.harbor",
+            "role": "intake",
+            "start": "2026-11-26T22:00:00Z"
+          }
+        ],
+        "effective_keys": [
+          "org.harbor|approval|acct.harbor.controller",
+          "org.harbor|approval|acct.harbor.shen",
+          "org.harbor|approval|acct.harbor.wu",
+          "org.harbor|approval|acct.harbor.zheng",
+          "org.harbor|intake|acct.harbor.chen",
+          "org.harbor|intake|acct.harbor.controller",
+          "org.harbor|intake|acct.harbor.lin"
+        ],
+        "holders": {
+          "org.harbor|approval": [
+            "acct.harbor.controller",
+            "acct.harbor.shen",
+            "acct.harbor.wu",
+            "acct.harbor.zheng"
+          ],
+          "org.harbor|intake": [
+            "acct.harbor.chen",
+            "acct.harbor.controller",
+            "acct.harbor.lin"
+          ]
+        },
+        "minute": "2026-11-27T00:07:00Z",
+        "org_filter": "org.harbor",
+        "proofs": {
+          "org.harbor|approval|acct.harbor.controller": {
+            "accounts": [
+              "acct.harbor.controller"
+            ],
+            "batch_ids": [],
+            "delegation_ids": [],
+            "org": "org.harbor",
+            "role": "approval",
+            "shift_id": "shift.harbor.approval.controller"
+          },
+          "org.harbor|approval|acct.harbor.shen": {
+            "accounts": [
+              "acct.harbor.controller",
+              "acct.harbor.wu",
+              "acct.harbor.shen"
+            ],
+            "batch_ids": [
+              "batch.harbor.approval-a"
+            ],
+            "delegation_ids": [
+              "del.harbor.approval.controller-to-wu",
+              "del.harbor.approval.wu-to-shen"
+            ],
+            "org": "org.harbor",
+            "role": "approval",
+            "shift_id": "shift.harbor.approval.controller"
+          },
+          "org.harbor|approval|acct.harbor.wu": {
+            "accounts": [
+              "acct.harbor.controller",
+              "acct.harbor.wu"
+            ],
+            "batch_ids": [
+              "batch.harbor.approval-a"
+            ],
+            "delegation_ids": [
+              "del.harbor.approval.controller-to-wu"
+            ],
+            "org": "org.harbor",
+            "role": "approval",
+            "shift_id": "shift.harbor.approval.controller"
+          },
+          "org.harbor|approval|acct.harbor.zheng": {
+            "accounts": [
+              "acct.harbor.controller",
+              "acct.harbor.zheng"
+            ],
+            "batch_ids": [
+              "batch.harbor.approval-b"
+            ],
+            "delegation_ids": [
+              "del.harbor.approval.controller-to-zheng"
+            ],
+            "org": "org.harbor",
+            "role": "approval",
+            "shift_id": "shift.harbor.approval.controller"
+          },
+          "org.harbor|intake|acct.harbor.chen": {
+            "accounts": [
+              "acct.harbor.controller",
+              "acct.harbor.chen"
+            ],
+            "batch_ids": [
+              "batch.harbor.intake-handover"
+            ],
+            "delegation_ids": [
+              "del.harbor.intake.controller-to-chen"
+            ],
+            "org": "org.harbor",
+            "role": "intake",
+            "shift_id": "shift.harbor.intake.controller"
+          },
+          "org.harbor|intake|acct.harbor.controller": {
+            "accounts": [
+              "acct.harbor.controller"
+            ],
+            "batch_ids": [],
+            "delegation_ids": [],
+            "org": "org.harbor",
+            "role": "intake",
+            "shift_id": "shift.harbor.intake.controller"
+          },
+          "org.harbor|intake|acct.harbor.lin": {
+            "accounts": [
+              "acct.harbor.controller",
+              "acct.harbor.chen",
+              "acct.harbor.lin"
+            ],
+            "batch_ids": [
+              "batch.harbor.intake-handover"
+            ],
+            "delegation_ids": [
+              "del.harbor.intake.controller-to-chen",
+              "del.harbor.intake.chen-to-lin"
+            ],
+            "org": "org.harbor",
+            "role": "intake",
+            "shift_id": "shift.harbor.intake.controller"
+          }
+        }
+      },
+      "org": "org.harbor",
+      "policy": "At the UTC minute when the claim is received by the reference monitor, each claimed actor must be reachable from an active shift through active delegations. Intervals are [start, end). A shared root/controller is evidence of convergence, not a veto.",
+      "reasons": [],
+      "role_evidence": {
+        "approval": {
+          "actor_effective": true,
+          "actual_controllers": [
+            "ctrl.harbor-zhou"
+          ],
+          "all_simple_proof_paths": [
+            {
+              "accounts": [
+                "acct.harbor.controller",
+                "acct.harbor.wu",
+                "acct.harbor.shen"
+              ],
+              "delegation_ids": [
+                "del.harbor.approval.controller-to-wu",
+                "del.harbor.approval.wu-to-shen"
+              ],
+              "length": 2,
+              "shift_id": "shift.harbor.approval.controller"
+            },
+            {
+              "accounts": [
+                "acct.harbor.controller",
+                "acct.harbor.zheng",
+                "acct.harbor.shen"
+              ],
+              "delegation_ids": [
+                "del.harbor.approval.controller-to-zheng",
+                "del.harbor.approval.zheng-to-shen"
+              ],
+              "length": 2,
+              "shift_id": "shift.harbor.approval.controller"
+            }
+          ],
+          "claimed_actor": "acct.harbor.shen",
+          "effective_accounts": [
+            "acct.harbor.controller",
+            "acct.harbor.shen",
+            "acct.harbor.wu",
+            "acct.harbor.zheng"
+          ],
+          "root_accounts": [
+            "acct.harbor.controller"
+          ],
+          "shortest_proof": {
+            "accounts": [
+              "acct.harbor.controller",
+              "acct.harbor.wu",
+              "acct.harbor.shen"
+            ],
+            "batch_ids": [
+              "batch.harbor.approval-a"
+            ],
+            "delegation_ids": [
+              "del.harbor.approval.controller-to-wu",
+              "del.harbor.approval.wu-to-shen"
+            ],
+            "org": "org.harbor",
+            "role": "approval",
+            "shift_id": "shift.harbor.approval.controller"
+          }
+        },
+        "intake": {
+          "actor_effective": true,
+          "actual_controllers": [
+            "ctrl.harbor-zhou"
+          ],
+          "all_simple_proof_paths": [
+            {
+              "accounts": [
+                "acct.harbor.controller",
+                "acct.harbor.chen",
+                "acct.harbor.lin"
+              ],
+              "delegation_ids": [
+                "del.harbor.intake.controller-to-chen",
+                "del.harbor.intake.chen-to-lin"
+              ],
+              "length": 2,
+              "shift_id": "shift.harbor.intake.controller"
+            }
+          ],
+          "claimed_actor": "acct.harbor.lin",
+          "effective_accounts": [
+            "acct.harbor.chen",
+            "acct.harbor.controller",
+            "acct.harbor.lin"
+          ],
+          "root_accounts": [
+            "acct.harbor.controller"
+          ],
+          "shortest_proof": {
+            "accounts": [
+              "acct.harbor.controller",
+              "acct.harbor.chen",
+              "acct.harbor.lin"
+            ],
+            "batch_ids": [
+              "batch.harbor.intake-handover"
+            ],
+            "delegation_ids": [
+              "del.harbor.intake.controller-to-chen",
+              "del.harbor.intake.chen-to-lin"
+            ],
+            "org": "org.harbor",
+            "role": "intake",
+            "shift_id": "shift.harbor.intake.controller"
+          }
+        }
+      },
+      "shared_actual_controllers": [
+        "ctrl.harbor-zhou"
+      ],
+      "shared_controller_is_allowed_and_disclosed": true,
+      "verdict": "APPROVED"
+    },
+    {
+      "anchor": "at",
+      "case_id": "C2_START_ENDPOINT_IS_INCLUSIVE",
+      "claim": {
+        "approval_actor": "acct.harbor.shen",
+        "at": "2026-11-26T23:30:00Z",
+        "case_id": "C2_START_ENDPOINT_IS_INCLUSIVE",
+        "expected": "APPROVED",
+        "intake_actor": "acct.harbor.lin",
+        "org": "org.harbor"
+      },
+      "decision_minute_utc": "2026-11-26T23:30:00Z",
+      "distinct_acting_accounts": true,
+      "expected_verdict": "APPROVED",
+      "matches_expected": true,
+      "minute_graph": {
+        "active_delegations": [
+          {
+            "batch": "batch.harbor.approval-a",
+            "delegate": "acct.harbor.wu",
+            "delegator": "acct.harbor.controller",
+            "end": "2026-11-27T01:00:00Z",
+            "id": "del.harbor.approval.controller-to-wu",
+            "org": "org.harbor",
+            "role": "approval",
+            "start": "2026-11-26T23:00:00Z"
+          },
+          {
+            "batch": "batch.harbor.approval-b",
+            "delegate": "acct.harbor.zheng",
+            "delegator": "acct.harbor.controller",
+            "end": "2026-11-27T00:45:00Z",
+            "id": "del.harbor.approval.controller-to-zheng",
+            "org": "org.harbor",
+            "role": "approval",
+            "start": "2026-11-26T23:15:00Z"
+          },
+          {
+            "batch": "batch.harbor.approval-a",
+            "delegate": "acct.harbor.shen",
+            "delegator": "acct.harbor.wu",
+            "end": "2026-11-27T01:00:00Z",
+            "id": "del.harbor.approval.wu-to-shen",
+            "org": "org.harbor",
+            "role": "approval",
+            "start": "2026-11-26T23:00:00Z"
+          },
+          {
+            "batch": "batch.harbor.approval-b",
+            "delegate": "acct.harbor.shen",
+            "delegator": "acct.harbor.zheng",
+            "end": "2026-11-27T00:45:00Z",
+            "id": "del.harbor.approval.zheng-to-shen",
+            "org": "org.harbor",
+            "role": "approval",
+            "start": "2026-11-26T23:15:00Z"
+          },
+          {
+            "batch": "batch.harbor.intake-handover",
+            "delegate": "acct.harbor.lin",
+            "delegator": "acct.harbor.chen",
+            "end": "2026-11-27T00:30:00Z",
+            "id": "del.harbor.intake.chen-to-lin",
+            "org": "org.harbor",
+            "role": "intake",
+            "start": "2026-11-26T23:30:00Z"
+          },
+          {
+            "batch": "batch.harbor.intake-handover",
+            "delegate": "acct.harbor.chen",
+            "delegator": "acct.harbor.controller",
+            "end": "2026-11-27T00:30:00Z",
+            "id": "del.harbor.intake.controller-to-chen",
+            "org": "org.harbor",
+            "role": "intake",
+            "start": "2026-11-26T23:30:00Z"
+          }
+        ],
+        "active_shifts": [
+          {
+            "account": "acct.harbor.controller",
+            "end": "2026-11-27T02:00:00Z",
+            "id": "shift.harbor.approval.controller",
+            "org": "org.harbor",
+            "role": "approval",
+            "start": "2026-11-26T22:00:00Z"
+          },
+          {
+            "account": "acct.harbor.controller",
+            "end": "2026-11-27T02:00:00Z",
+            "id": "shift.harbor.intake.controller",
+            "org": "org.harbor",
+            "role": "intake",
+            "start": "2026-11-26T22:00:00Z"
+          }
+        ],
+        "effective_keys": [
+          "org.harbor|approval|acct.harbor.controller",
+          "org.harbor|approval|acct.harbor.shen",
+          "org.harbor|approval|acct.harbor.wu",
+          "org.harbor|approval|acct.harbor.zheng",
+          "org.harbor|intake|acct.harbor.chen",
+          "org.harbor|intake|acct.harbor.controller",
+          "org.harbor|intake|acct.harbor.lin"
+        ],
+        "holders": {
+          "org.harbor|approval": [
+            "acct.harbor.controller",
+            "acct.harbor.shen",
+            "acct.harbor.wu",
+            "acct.harbor.zheng"
+          ],
+          "org.harbor|intake": [
+            "acct.harbor.chen",
+            "acct.harbor.controller",
+            "acct.harbor.lin"
+          ]
+        },
+        "minute": "2026-11-26T23:30:00Z",
+        "org_filter": "org.harbor",
+        "proofs": {
+          "org.harbor|approval|acct.harbor.controller": {
+            "accounts": [
+              "acct.harbor.controller"
+            ],
+            "batch_ids": [],
+            "delegation_ids": [],
+            "org": "org.harbor",
+            "role": "approval",
+            "shift_id": "shift.harbor.approval.controller"
+          },
+          "org.harbor|approval|acct.harbor.shen": {
+            "accounts": [
+              "acct.harbor.controller",
+              "acct.harbor.wu",
+              "acct.harbor.shen"
+            ],
+            "batch_ids": [
+              "batch.harbor.approval-a"
+            ],
+            "delegation_ids": [
+              "del.harbor.approval.controller-to-wu",
+              "del.harbor.approval.wu-to-shen"
+            ],
+            "org": "org.harbor",
+            "role": "approval",
+            "shift_id": "shift.harbor.approval.controller"
+          },
+          "org.harbor|approval|acct.harbor.wu": {
+            "accounts": [
+              "acct.harbor.controller",
+              "acct.harbor.wu"
+            ],
+            "batch_ids": [
+              "batch.harbor.approval-a"
+            ],
+            "delegation_ids": [
+              "del.harbor.approval.controller-to-wu"
+            ],
+            "org": "org.harbor",
+            "role": "approval",
+            "shift_id": "shift.harbor.approval.controller"
+          },
+          "org.harbor|approval|acct.harbor.zheng": {
+            "accounts": [
+              "acct.harbor.controller",
+              "acct.harbor.zheng"
+            ],
+            "batch_ids": [
+              "batch.harbor.approval-b"
+            ],
+            "delegation_ids": [
+              "del.harbor.approval.controller-to-zheng"
+            ],
+            "org": "org.harbor",
+            "role": "approval",
+            "shift_id": "shift.harbor.approval.controller"
+          },
+          "org.harbor|intake|acct.harbor.chen": {
+            "accounts": [
+              "acct.harbor.controller",
+              "acct.harbor.chen"
+            ],
+            "batch_ids": [
+              "batch.harbor.intake-handover"
+            ],
+            "delegation_ids": [
+              "del.harbor.intake.controller-to-chen"
+            ],
+            "org": "org.harbor",
+            "role": "intake",
+            "shift_id": "shift.harbor.intake.controller"
+          },
+          "org.harbor|intake|acct.harbor.controller": {
+            "accounts": [
+              "acct.harbor.controller"
+            ],
+            "batch_ids": [],
+            "delegation_ids": [],
+            "org": "org.harbor",
+            "role": "intake",
+            "shift_id": "shift.harbor.intake.controller"
+          },
+          "org.harbor|intake|acct.harbor.lin": {
+            "accounts": [
+              "acct.harbor.controller",
+              "acct.harbor.chen",
+              "acct.harbor.lin"
+            ],
+            "batch_ids": [
+              "batch.harbor.intake-handover"
+            ],
+            "delegation_ids": [
+              "del.harbor.intake.controller-to-chen",
+              "del.harbor.intake.chen-to-lin"
+            ],
+            "org": "org.harbor",
+            "role": "intake",
+            "shift_id": "shift.harbor.intake.controller"
+          }
+        }
+      },
+      "org": "org.harbor",
+      "policy": "At the UTC minute when the claim is received by the reference monitor, each claimed actor must be reachable from an active shift through active delegations. Intervals are [start, end). A shared root/controller is evidence of convergence, not a veto.",
+      "reasons": [],
+      "role_evidence": {
+        "approval": {
+          "actor_effective": true,
+          "actual_controllers": [
+            "ctrl.harbor-zhou"
+          ],
+          "all_simple_proof_paths": [
+            {
+              "accounts": [
+                "acct.harbor.controller",
+                "acct.harbor.wu",
+                "acct.harbor.shen"
+              ],
+              "delegation_ids": [
+                "del.harbor.approval.controller-to-wu",
+                "del.harbor.approval.wu-to-shen"
+              ],
+              "length": 2,
+              "shift_id": "shift.harbor.approval.controller"
+            },
+            {
+              "accounts": [
+                "acct.harbor.controller",
+                "acct.harbor.zheng",
+                "acct.harbor.shen"
+              ],
+              "delegation_ids": [
+                "del.harbor.approval.controller-to-zheng",
+                "del.harbor.approval.zheng-to-shen"
+              ],
+              "length": 2,
+              "shift_id": "shift.harbor.approval.controller"
+            }
+          ],
+          "claimed_actor": "acct.harbor.shen",
+          "effective_accounts": [
+            "acct.harbor.controller",
+            "acct.harbor.shen",
+            "acct.harbor.wu",
+            "acct.harbor.zheng"
+          ],
+          "root_accounts": [
+            "acct.harbor.controller"
+          ],
+          "shortest_proof": {
+            "accounts": [
+              "acct.harbor.controller",
+              "acct.harbor.wu",
+              "acct.harbor.shen"
+            ],
+            "batch_ids": [
+              "batch.harbor.approval-a"
+            ],
+            "delegation_ids": [
+              "del.harbor.approval.controller-to-wu",
+              "del.harbor.approval.wu-to-shen"
+            ],
+            "org": "org.harbor",
+            "role": "approval",
+            "shift_id": "shift.harbor.approval.controller"
+          }
+        },
+        "intake": {
+          "actor_effective": true,
+          "actual_controllers": [
+            "ctrl.harbor-zhou"
+          ],
+          "all_simple_proof_paths": [
+            {
+              "accounts": [
+                "acct.harbor.controller",
+                "acct.harbor.chen",
+                "acct.harbor.lin"
+              ],
+              "delegation_ids": [
+                "del.harbor.intake.controller-to-chen",
+                "del.harbor.intake.chen-to-lin"
+              ],
+              "length": 2,
+              "shift_id": "shift.harbor.intake.controller"
+            }
+          ],
+          "claimed_actor": "acct.harbor.lin",
+          "effective_accounts": [
+            "acct.harbor.chen",
+            "acct.harbor.controller",
+            "acct.harbor.lin"
+          ],
+          "root_accounts": [
+            "acct.harbor.controller"
+          ],
+          "shortest_proof": {
+            "accounts": [
+              "acct.harbor.controller",
+              "acct.harbor.chen",
+              "acct.harbor.lin"
+            ],
+            "batch_ids": [
+              "batch.harbor.intake-handover"
+            ],
+            "delegation_ids": [
+              "del.harbor.intake.controller-to-chen",
+              "del.harbor.intake.chen-to-lin"
+            ],
+            "org": "org.harbor",
+            "role": "intake",
+            "shift_id": "shift.harbor.intake.controller"
+          }
+        }
+      },
+      "shared_actual_controllers": [
+        "ctrl.harbor-zhou"
+      ],
+      "shared_controller_is_allowed_and_disclosed": true,
+      "verdict": "APPROVED"
+    },
+    {
+      "anchor": "at",
+      "case_id": "C3_END_ENDPOINT_IS_EXCLUSIVE",
+      "claim": {
+        "approval_actor": "acct.harbor.shen",
+        "at": "2026-11-27T00:30:00Z",
+        "case_id": "C3_END_ENDPOINT_IS_EXCLUSIVE",
+        "expected": "REJECTED",
+        "intake_actor": "acct.harbor.lin",
+        "org": "org.harbor"
+      },
+      "decision_minute_utc": "2026-11-27T00:30:00Z",
+      "distinct_acting_accounts": true,
+      "expected_verdict": "REJECTED",
+      "matches_expected": true,
+      "minute_graph": {
+        "active_delegations": [
+          {
+            "batch": "batch.harbor.approval-a",
+            "delegate": "acct.harbor.wu",
+            "delegator": "acct.harbor.controller",
+            "end": "2026-11-27T01:00:00Z",
+            "id": "del.harbor.approval.controller-to-wu",
+            "org": "org.harbor",
+            "role": "approval",
+            "start": "2026-11-26T23:00:00Z"
+          },
+          {
+            "batch": "batch.harbor.approval-b",
+            "delegate": "acct.harbor.zheng",
+            "delegator": "acct.harbor.controller",
+            "end": "2026-11-27T00:45:00Z",
+            "id": "del.harbor.approval.controller-to-zheng",
+            "org": "org.harbor",
+            "role": "approval",
+            "start": "2026-11-26T23:15:00Z"
+          },
+          {
+            "batch": "batch.harbor.approval-a",
+            "delegate": "acct.harbor.shen",
+            "delegator": "acct.harbor.wu",
+            "end": "2026-11-27T01:00:00Z",
+            "id": "del.harbor.approval.wu-to-shen",
+            "org": "org.harbor",
+            "role": "approval",
+            "start": "2026-11-26T23:00:00Z"
+          },
+          {
+            "batch": "batch.harbor.approval-b",
+            "delegate": "acct.harbor.shen",
+            "delegator": "acct.harbor.zheng",
+            "end": "2026-11-27T00:45:00Z",
+            "id": "del.harbor.approval.zheng-to-shen",
+            "org": "org.harbor",
+            "role": "approval",
+            "start": "2026-11-26T23:15:00Z"
+          }
+        ],
+        "active_shifts": [
+          {
+            "account": "acct.harbor.controller",
+            "end": "2026-11-27T02:00:00Z",
+            "id": "shift.harbor.approval.controller",
+            "org": "org.harbor",
+            "role": "approval",
+            "start": "2026-11-26T22:00:00Z"
+          },
+          {
+            "account": "acct.harbor.controller",
+            "end": "2026-11-27T02:00:00Z",
+            "id": "shift.harbor.intake.controller",
+            "org": "org.harbor",
+            "role": "intake",
+            "start": "2026-11-26T22:00:00Z"
+          }
+        ],
+        "effective_keys": [
+          "org.harbor|approval|acct.harbor.controller",
+          "org.harbor|approval|acct.harbor.shen",
+          "org.harbor|approval|acct.harbor.wu",
+          "org.harbor|approval|acct.harbor.zheng",
+          "org.harbor|intake|acct.harbor.controller"
+        ],
+        "holders": {
+          "org.harbor|approval": [
+            "acct.harbor.controller",
+            "acct.harbor.shen",
+            "acct.harbor.wu",
+            "acct.harbor.zheng"
+          ],
+          "org.harbor|intake": [
+            "acct.harbor.controller"
+          ]
+        },
+        "minute": "2026-11-27T00:30:00Z",
+        "org_filter": "org.harbor",
+        "proofs": {
+          "org.harbor|approval|acct.harbor.controller": {
+            "accounts": [
+              "acct.harbor.controller"
+            ],
+            "batch_ids": [],
+            "delegation_ids": [],
+            "org": "org.harbor",
+            "role": "approval",
+            "shift_id": "shift.harbor.approval.controller"
+          },
+          "org.harbor|approval|acct.harbor.shen": {
+            "accounts": [
+              "acct.harbor.controller",
+              "acct.harbor.wu",
+              "acct.harbor.shen"
+            ],
+            "batch_ids": [
+              "batch.harbor.approval-a"
+            ],
+            "delegation_ids": [
+              "del.harbor.approval.controller-to-wu",
+              "del.harbor.approval.wu-to-shen"
+            ],
+            "org": "org.harbor",
+            "role": "approval",
+            "shift_id": "shift.harbor.approval.controller"
+          },
+          "org.harbor|approval|acct.harbor.wu": {
+            "accounts": [
+              "acct.harbor.controller",
+              "acct.harbor.wu"
+            ],
+            "batch_ids": [
+              "batch.harbor.approval-a"
+            ],
+            "delegation_ids": [
+              "del.harbor.approval.controller-to-wu"
+            ],
+            "org": "org.harbor",
+            "role": "approval",
+            "shift_id": "shift.harbor.approval.controller"
+          },
+          "org.harbor|approval|acct.harbor.zheng": {
+            "accounts": [
+              "acct.harbor.controller",
+              "acct.harbor.zheng"
+            ],
+            "batch_ids": [
+              "batch.harbor.approval-b"
+            ],
+            "delegation_ids": [
+              "del.harbor.approval.controller-to-zheng"
+            ],
+            "org": "org.harbor",
+            "role": "approval",
+            "shift_id": "shift.harbor.approval.controller"
+          },
+          "org.harbor|intake|acct.harbor.controller": {
+            "accounts": [
+              "acct.harbor.controller"
+            ],
+            "batch_ids": [],
+            "delegation_ids": [],
+            "org": "org.harbor",
+            "role": "intake",
+            "shift_id": "shift.harbor.intake.controller"
+          }
+        }
+      },
+      "org": "org.harbor",
+      "policy": "At the UTC minute when the claim is received by the reference monitor, each claimed actor must be reachable from an active shift through active delegations. Intervals are [start, end). A shared root/controller is evidence of convergence, not a veto.",
+      "reasons": [
+        "INTAKE_CLAIMED_ACTOR_NOT_EFFECTIVE"
+      ],
+      "role_evidence": {
+        "approval": {
+          "actor_effective": true,
+          "actual_controllers": [
+            "ctrl.harbor-zhou"
+          ],
+          "all_simple_proof_paths": [
+            {
+              "accounts": [
+                "acct.harbor.controller",
+                "acct.harbor.wu",
+                "acct.harbor.shen"
+              ],
+              "delegation_ids": [
+                "del.harbor.approval.controller-to-wu",
+                "del.harbor.approval.wu-to-shen"
+              ],
+              "length": 2,
+              "shift_id": "shift.harbor.approval.controller"
+            },
+            {
+              "accounts": [
+                "acct.harbor.controller",
+                "acct.harbor.zheng",
+                "acct.harbor.shen"
+              ],
+              "delegation_ids": [
+                "del.harbor.approval.controller-to-zheng",
+                "del.harbor.approval.zheng-to-shen"
+              ],
+              "length": 2,
+              "shift_id": "shift.harbor.approval.controller"
+            }
+          ],
+          "claimed_actor": "acct.harbor.shen",
+          "effective_accounts": [
+            "acct.harbor.controller",
+            "acct.harbor.shen",
+            "acct.harbor.wu",
+            "acct.harbor.zheng"
+          ],
+          "root_accounts": [
+            "acct.harbor.controller"
+          ],
+          "shortest_proof": {
+            "accounts": [
+              "acct.harbor.controller",
+              "acct.harbor.wu",
+              "acct.harbor.shen"
+            ],
+            "batch_ids": [
+              "batch.harbor.approval-a"
+            ],
+            "delegation_ids": [
+              "del.harbor.approval.controller-to-wu",
+              "del.harbor.approval.wu-to-shen"
+            ],
+            "org": "org.harbor",
+            "role": "approval",
+            "shift_id": "shift.harbor.approval.controller"
+          }
+        },
+        "intake": {
+          "actor_effective": false,
+          "actual_controllers": [],
+          "all_simple_proof_paths": [],
+          "claimed_actor": "acct.harbor.lin",
+          "effective_accounts": [
+            "acct.harbor.controller"
+          ],
+          "root_accounts": [],
+          "shortest_proof": null
+        }
+      },
+      "shared_actual_controllers": [],
+      "shared_controller_is_allowed_and_disclosed": false,
+      "verdict": "REJECTED"
+    },
+    {
+      "anchor": "at",
+      "case_id": "C4_SOURCELESS_RING_CANNOT_FILL_SEAT",
+      "claim": {
+        "approval_actor": "acct.ring.c",
+        "at": "2026-11-27T00:10:00Z",
+        "case_id": "C4_SOURCELESS_RING_CANNOT_FILL_SEAT",
+        "expected": "REJECTED",
+        "intake_actor": "acct.ring.b",
+        "org": "org.ring"
+      },
+      "decision_minute_utc": "2026-11-27T00:10:00Z",
+      "distinct_acting_accounts": true,
+      "expected_verdict": "REJECTED",
+      "matches_expected": true,
+      "minute_graph": {
+        "active_delegations": [
+          {
+            "batch": "batch.ring.sourceless",
+            "delegate": "acct.ring.b",
+            "delegator": "acct.ring.a",
+            "end": "2026-11-27T01:00:00Z",
+            "id": "del.ring.a-to-b",
+            "org": "org.ring",
+            "role": "intake",
+            "start": "2026-11-26T23:00:00Z"
+          },
+          {
+            "batch": "batch.ring.sourceless",
+            "delegate": "acct.ring.c",
+            "delegator": "acct.ring.b",
+            "end": "2026-11-27T01:00:00Z",
+            "id": "del.ring.b-to-c",
+            "org": "org.ring",
+            "role": "intake",
+            "start": "2026-11-26T23:00:00Z"
+          },
+          {
+            "batch": "batch.ring.sourceless",
+            "delegate": "acct.ring.a",
+            "delegator": "acct.ring.c",
+            "end": "2026-11-27T01:00:00Z",
+            "id": "del.ring.c-to-a",
+            "org": "org.ring",
+            "role": "intake",
+            "start": "2026-11-26T23:00:00Z"
+          }
+        ],
+        "active_shifts": [],
+        "effective_keys": [],
+        "holders": {},
+        "minute": "2026-11-27T00:10:00Z",
+        "org_filter": "org.ring",
+        "proofs": {}
+      },
+      "org": "org.ring",
+      "policy": "At the UTC minute when the claim is received by the reference monitor, each claimed actor must be reachable from an active shift through active delegations. Intervals are [start, end). A shared root/controller is evidence of convergence, not a veto.",
+      "reasons": [
+        "INTAKE_NO_EFFECTIVE_HOLDER",
+        "APPROVAL_NO_EFFECTIVE_HOLDER"
+      ],
+      "role_evidence": {
+        "approval": {
+          "actor_effective": false,
+          "actual_controllers": [],
+          "all_simple_proof_paths": [],
+          "claimed_actor": "acct.ring.c",
+          "effective_accounts": [],
+          "root_accounts": [],
+          "shortest_proof": null
+        },
+        "intake": {
+          "actor_effective": false,
+          "actual_controllers": [],
+          "all_simple_proof_paths": [],
+          "claimed_actor": "acct.ring.b",
+          "effective_accounts": [],
+          "root_accounts": [],
+          "shortest_proof": null
+        }
+      },
+      "shared_actual_controllers": [],
+      "shared_controller_is_allowed_and_disclosed": false,
+      "verdict": "REJECTED"
+    },
+    {
+      "anchor": "at",
+      "case_id": "C5_ROOTED_MUTUAL_BATCH_APPROVE",
+      "claim": {
+        "approval_actor": "acct.mutual.y",
+        "at": "2026-11-27T00:15:00Z",
+        "case_id": "C5_ROOTED_MUTUAL_BATCH_APPROVE",
+        "expected": "APPROVED",
+        "intake_actor": "acct.mutual.root",
+        "org": "org.mutual"
+      },
+      "decision_minute_utc": "2026-11-27T00:15:00Z",
+      "distinct_acting_accounts": true,
+      "expected_verdict": "APPROVED",
+      "matches_expected": true,
+      "minute_graph": {
+        "active_delegations": [
+          {
+            "batch": "batch.mutual.handover",
+            "delegate": "acct.mutual.x",
+            "delegator": "acct.mutual.root",
+            "end": "2026-11-27T00:30:00Z",
+            "id": "del.mutual.approval.root-to-x",
+            "org": "org.mutual",
+            "role": "approval",
+            "start": "2026-11-26T23:30:00Z"
+          },
+          {
+            "batch": "batch.mutual.handover",
+            "delegate": "acct.mutual.y",
+            "delegator": "acct.mutual.x",
+            "end": "2026-11-27T00:30:00Z",
+            "id": "del.mutual.approval.x-to-y",
+            "mutual_with": "del.mutual.approval.y-to-x",
+            "org": "org.mutual",
+            "role": "approval",
+            "start": "2026-11-26T23:30:00Z"
+          },
+          {
+            "batch": "batch.mutual.handover",
+            "delegate": "acct.mutual.x",
+            "delegator": "acct.mutual.y",
+            "end": "2026-11-27T00:30:00Z",
+            "id": "del.mutual.approval.y-to-x",
+            "mutual_with": "del.mutual.approval.x-to-y",
+            "org": "org.mutual",
+            "role": "approval",
+            "start": "2026-11-26T23:30:00Z"
+          }
+        ],
+        "active_shifts": [
+          {
+            "account": "acct.mutual.root",
+            "end": "2026-11-27T01:00:00Z",
+            "id": "shift.mutual.approval.root",
+            "org": "org.mutual",
+            "role": "approval",
+            "start": "2026-11-26T23:00:00Z"
+          },
+          {
+            "account": "acct.mutual.root",
+            "end": "2026-11-27T01:00:00Z",
+            "id": "shift.mutual.intake.root",
+            "org": "org.mutual",
+            "role": "intake",
+            "start": "2026-11-26T23:00:00Z"
+          }
+        ],
+        "effective_keys": [
+          "org.mutual|approval|acct.mutual.root",
+          "org.mutual|approval|acct.mutual.x",
+          "org.mutual|approval|acct.mutual.y",
+          "org.mutual|intake|acct.mutual.root"
+        ],
+        "holders": {
+          "org.mutual|approval": [
+            "acct.mutual.root",
+            "acct.mutual.x",
+            "acct.mutual.y"
+          ],
+          "org.mutual|intake": [
+            "acct.mutual.root"
+          ]
+        },
+        "minute": "2026-11-27T00:15:00Z",
+        "org_filter": "org.mutual",
+        "proofs": {
+          "org.mutual|approval|acct.mutual.root": {
+            "accounts": [
+              "acct.mutual.root"
+            ],
+            "batch_ids": [],
+            "delegation_ids": [],
+            "org": "org.mutual",
+            "role": "approval",
+            "shift_id": "shift.mutual.approval.root"
+          },
+          "org.mutual|approval|acct.mutual.x": {
+            "accounts": [
+              "acct.mutual.root",
+              "acct.mutual.x"
+            ],
+            "batch_ids": [
+              "batch.mutual.handover"
+            ],
+            "delegation_ids": [
+              "del.mutual.approval.root-to-x"
+            ],
+            "org": "org.mutual",
+            "role": "approval",
+            "shift_id": "shift.mutual.approval.root"
+          },
+          "org.mutual|approval|acct.mutual.y": {
+            "accounts": [
+              "acct.mutual.root",
+              "acct.mutual.x",
+              "acct.mutual.y"
+            ],
+            "batch_ids": [
+              "batch.mutual.handover"
+            ],
+            "delegation_ids": [
+              "del.mutual.approval.root-to-x",
+              "del.mutual.approval.x-to-y"
+            ],
+            "org": "org.mutual",
+            "role": "approval",
+            "shift_id": "shift.mutual.approval.root"
+          },
+          "org.mutual|intake|acct.mutual.root": {
+            "accounts": [
+              "acct.mutual.root"
+            ],
+            "batch_ids": [],
+            "delegation_ids": [],
+            "org": "org.mutual",
+            "role": "intake",
+            "shift_id": "shift.mutual.intake.root"
+          }
+        }
+      },
+      "org": "org.mutual",
+      "policy": "At the UTC minute when the claim is received by the reference monitor, each claimed actor must be reachable from an active shift through active delegations. Intervals are [start, end). A shared root/controller is evidence of convergence, not a veto.",
+      "reasons": [],
+      "role_evidence": {
+        "approval": {
+          "actor_effective": true,
+          "actual_controllers": [
+            "ctrl.mutual-root"
+          ],
+          "all_simple_proof_paths": [
+            {
+              "accounts": [
+                "acct.mutual.root",
+                "acct.mutual.x",
+                "acct.mutual.y"
+              ],
+              "delegation_ids": [
+                "del.mutual.approval.root-to-x",
+                "del.mutual.approval.x-to-y"
+              ],
+              "length": 2,
+              "shift_id": "shift.mutual.approval.root"
+            }
+          ],
+          "claimed_actor": "acct.mutual.y",
+          "effective_accounts": [
+            "acct.mutual.root",
+            "acct.mutual.x",
+            "acct.mutual.y"
+          ],
+          "root_accounts": [
+            "acct.mutual.root"
+          ],
+          "shortest_proof": {
+            "accounts": [
+              "acct.mutual.root",
+              "acct.mutual.x",
+              "acct.mutual.y"
+            ],
+            "batch_ids": [
+              "batch.mutual.handover"
+            ],
+            "delegation_ids": [
+              "del.mutual.approval.root-to-x",
+              "del.mutual.approval.x-to-y"
+            ],
+            "org": "org.mutual",
+            "role": "approval",
+            "shift_id": "shift.mutual.approval.root"
+          }
+        },
+        "intake": {
+          "actor_effective": true,
+          "actual_controllers": [
+            "ctrl.mutual-root"
+          ],
+          "all_simple_proof_paths": [
+            {
+              "accounts": [
+                "acct.mutual.root"
+              ],
+              "delegation_ids": [],
+              "length": 0,
+              "shift_id": "shift.mutual.intake.root"
+            }
+          ],
+          "claimed_actor": "acct.mutual.root",
+          "effective_accounts": [
+            "acct.mutual.root"
+          ],
+          "root_accounts": [
+            "acct.mutual.root"
+          ],
+          "shortest_proof": {
+            "accounts": [
+              "acct.mutual.root"
+            ],
+            "batch_ids": [],
+            "delegation_ids": [],
+            "org": "org.mutual",
+            "role": "intake",
+            "shift_id": "shift.mutual.intake.root"
+          }
+        }
+      },
+      "shared_actual_controllers": [
+        "ctrl.mutual-root"
+      ],
+      "shared_controller_is_allowed_and_disclosed": true,
+      "verdict": "APPROVED"
+    },
+    {
+      "action_time_check": {
+        "acted_minute_utc": "2026-11-27T00:59:00Z",
+        "both_roles_effective_when_acted": true,
+        "event_time_anchor_alternative_verdict": "APPROVED",
+        "note": "The default verdict uses receipt/reference-monitor time. This block independently shows what an event-time policy would conclude from the same input.",
+        "role_effective_at_action": {
+          "approval": true,
+          "intake": true
+        }
+      },
+      "anchor": "received_at",
+      "case_id": "C6_OLD_APPROVAL_LATE_EXACT_HANDOVER",
+      "claim": {
+        "acted_at": "2026-11-27T00:59:00Z",
+        "approval_actor": "acct.late.old-approver",
+        "case_id": "C6_OLD_APPROVAL_LATE_EXACT_HANDOVER",
+        "expected": "REJECTED",
+        "intake_actor": "acct.late.intake",
+        "org": "org.late",
+        "received_at": "2026-11-27T01:00:00Z"
+      },
+      "decision_minute_utc": "2026-11-27T01:00:00Z",
+      "distinct_acting_accounts": true,
+      "expected_verdict": "REJECTED",
+      "matches_expected": true,
+      "minute_graph": {
+        "active_delegations": [
+          {
+            "batch": "batch.late.night",
+            "delegate": "acct.late.new-approver",
+            "delegator": "acct.late.night-root",
+            "end": "2026-11-27T02:00:00Z",
+            "id": "del.late.approval.night-root-to-new",
+            "org": "org.late",
+            "role": "approval",
+            "start": "2026-11-27T01:00:00Z"
+          }
+        ],
+        "active_shifts": [
+          {
+            "account": "acct.late.night-root",
+            "end": "2026-11-27T02:00:00Z",
+            "id": "shift.late.approval.night",
+            "org": "org.late",
+            "role": "approval",
+            "start": "2026-11-27T01:00:00Z"
+          },
+          {
+            "account": "acct.late.intake",
+            "end": "2026-11-27T02:00:00Z",
+            "id": "shift.late.intake",
+            "org": "org.late",
+            "role": "intake",
+            "start": "2026-11-26T23:00:00Z"
+          }
+        ],
+        "effective_keys": [
+          "org.late|approval|acct.late.new-approver",
+          "org.late|approval|acct.late.night-root",
+          "org.late|intake|acct.late.intake"
+        ],
+        "holders": {
+          "org.late|approval": [
+            "acct.late.new-approver",
+            "acct.late.night-root"
+          ],
+          "org.late|intake": [
+            "acct.late.intake"
+          ]
+        },
+        "minute": "2026-11-27T01:00:00Z",
+        "org_filter": "org.late",
+        "proofs": {
+          "org.late|approval|acct.late.new-approver": {
+            "accounts": [
+              "acct.late.night-root",
+              "acct.late.new-approver"
+            ],
+            "batch_ids": [
+              "batch.late.night"
+            ],
+            "delegation_ids": [
+              "del.late.approval.night-root-to-new"
+            ],
+            "org": "org.late",
+            "role": "approval",
+            "shift_id": "shift.late.approval.night"
+          },
+          "org.late|approval|acct.late.night-root": {
+            "accounts": [
+              "acct.late.night-root"
+            ],
+            "batch_ids": [],
+            "delegation_ids": [],
+            "org": "org.late",
+            "role": "approval",
+            "shift_id": "shift.late.approval.night"
+          },
+          "org.late|intake|acct.late.intake": {
+            "accounts": [
+              "acct.late.intake"
+            ],
+            "batch_ids": [],
+            "delegation_ids": [],
+            "org": "org.late",
+            "role": "intake",
+            "shift_id": "shift.late.intake"
+          }
+        }
+      },
+      "org": "org.late",
+      "policy": "At the UTC minute when the claim is received by the reference monitor, each claimed actor must be reachable from an active shift through active delegations. Intervals are [start, end). A shared root/controller is evidence of convergence, not a veto.",
+      "reasons": [
+        "APPROVAL_CLAIMED_ACTOR_NOT_EFFECTIVE"
+      ],
+      "role_evidence": {
+        "approval": {
+          "actor_effective": false,
+          "actual_controllers": [],
+          "all_simple_proof_paths": [],
+          "claimed_actor": "acct.late.old-approver",
+          "effective_accounts": [
+            "acct.late.new-approver",
+            "acct.late.night-root"
+          ],
+          "root_accounts": [],
+          "shortest_proof": null
+        },
+        "intake": {
+          "actor_effective": true,
+          "actual_controllers": [
+            "ctrl.late-intake"
+          ],
+          "all_simple_proof_paths": [
+            {
+              "accounts": [
+                "acct.late.intake"
+              ],
+              "delegation_ids": [],
+              "length": 0,
+              "shift_id": "shift.late.intake"
+            }
+          ],
+          "claimed_actor": "acct.late.intake",
+          "effective_accounts": [
+            "acct.late.intake"
+          ],
+          "root_accounts": [
+            "acct.late.intake"
+          ],
+          "shortest_proof": {
+            "accounts": [
+              "acct.late.intake"
+            ],
+            "batch_ids": [],
+            "delegation_ids": [],
+            "org": "org.late",
+            "role": "intake",
+            "shift_id": "shift.late.intake"
+          }
+        }
+      },
+      "shared_actual_controllers": [],
+      "shared_controller_is_allowed_and_disclosed": false,
+      "verdict": "REJECTED"
+    },
+    {
+      "action_time_check": {
+        "acted_minute_utc": "2026-11-27T00:58:00Z",
+        "both_roles_effective_when_acted": true,
+        "event_time_anchor_alternative_verdict": "APPROVED",
+        "note": "The default verdict uses receipt/reference-monitor time. This block independently shows what an event-time policy would conclude from the same input.",
+        "role_effective_at_action": {
+          "approval": true,
+          "intake": true
+        }
+      },
+      "anchor": "received_at",
+      "case_id": "C7_OLD_APPROVAL_LATE_AFTER_HANDOVER",
+      "claim": {
+        "acted_at": "2026-11-27T00:58:00Z",
+        "approval_actor": "acct.late.old-approver",
+        "case_id": "C7_OLD_APPROVAL_LATE_AFTER_HANDOVER",
+        "expected": "REJECTED",
+        "intake_actor": "acct.late.intake",
+        "org": "org.late",
+        "received_at": "2026-11-27T01:02:00Z"
+      },
+      "decision_minute_utc": "2026-11-27T01:02:00Z",
+      "distinct_acting_accounts": true,
+      "expected_verdict": "REJECTED",
+      "matches_expected": true,
+      "minute_graph": {
+        "active_delegations": [
+          {
+            "batch": "batch.late.night",
+            "delegate": "acct.late.new-approver",
+            "delegator": "acct.late.night-root",
+            "end": "2026-11-27T02:00:00Z",
+            "id": "del.late.approval.night-root-to-new",
+            "org": "org.late",
+            "role": "approval",
+            "start": "2026-11-27T01:00:00Z"
+          }
+        ],
+        "active_shifts": [
+          {
+            "account": "acct.late.night-root",
+            "end": "2026-11-27T02:00:00Z",
+            "id": "shift.late.approval.night",
+            "org": "org.late",
+            "role": "approval",
+            "start": "2026-11-27T01:00:00Z"
+          },
+          {
+            "account": "acct.late.intake",
+            "end": "2026-11-27T02:00:00Z",
+            "id": "shift.late.intake",
+            "org": "org.late",
+            "role": "intake",
+            "start": "2026-11-26T23:00:00Z"
+          }
+        ],
+        "effective_keys": [
+          "org.late|approval|acct.late.new-approver",
+          "org.late|approval|acct.late.night-root",
+          "org.late|intake|acct.late.intake"
+        ],
+        "holders": {
+          "org.late|approval": [
+            "acct.late.new-approver",
+            "acct.late.night-root"
+          ],
+          "org.late|intake": [
+            "acct.late.intake"
+          ]
+        },
+        "minute": "2026-11-27T01:02:00Z",
+        "org_filter": "org.late",
+        "proofs": {
+          "org.late|approval|acct.late.new-approver": {
+            "accounts": [
+              "acct.late.night-root",
+              "acct.late.new-approver"
+            ],
+            "batch_ids": [
+              "batch.late.night"
+            ],
+            "delegation_ids": [
+              "del.late.approval.night-root-to-new"
+            ],
+            "org": "org.late",
+            "role": "approval",
+            "shift_id": "shift.late.approval.night"
+          },
+          "org.late|approval|acct.late.night-root": {
+            "accounts": [
+              "acct.late.night-root"
+            ],
+            "batch_ids": [],
+            "delegation_ids": [],
+            "org": "org.late",
+            "role": "approval",
+            "shift_id": "shift.late.approval.night"
+          },
+          "org.late|intake|acct.late.intake": {
+            "accounts": [
+              "acct.late.intake"
+            ],
+            "batch_ids": [],
+            "delegation_ids": [],
+            "org": "org.late",
+            "role": "intake",
+            "shift_id": "shift.late.intake"
+          }
+        }
+      },
+      "org": "org.late",
+      "policy": "At the UTC minute when the claim is received by the reference monitor, each claimed actor must be reachable from an active shift through active delegations. Intervals are [start, end). A shared root/controller is evidence of convergence, not a veto.",
+      "reasons": [
+        "APPROVAL_CLAIMED_ACTOR_NOT_EFFECTIVE"
+      ],
+      "role_evidence": {
+        "approval": {
+          "actor_effective": false,
+          "actual_controllers": [],
+          "all_simple_proof_paths": [],
+          "claimed_actor": "acct.late.old-approver",
+          "effective_accounts": [
+            "acct.late.new-approver",
+            "acct.late.night-root"
+          ],
+          "root_accounts": [],
+          "shortest_proof": null
+        },
+        "intake": {
+          "actor_effective": true,
+          "actual_controllers": [
+            "ctrl.late-intake"
+          ],
+          "all_simple_proof_paths": [
+            {
+              "accounts": [
+                "acct.late.intake"
+              ],
+              "delegation_ids": [],
+              "length": 0,
+              "shift_id": "shift.late.intake"
+            }
+          ],
+          "claimed_actor": "acct.late.intake",
+          "effective_accounts": [
+            "acct.late.intake"
+          ],
+          "root_accounts": [
+            "acct.late.intake"
+          ],
+          "shortest_proof": {
+            "accounts": [
+              "acct.late.intake"
+            ],
+            "batch_ids": [],
+            "delegation_ids": [],
+            "org": "org.late",
+            "role": "intake",
+            "shift_id": "shift.late.intake"
+          }
+        }
+      },
+      "shared_actual_controllers": [],
+      "shared_controller_is_allowed_and_disclosed": false,
+      "verdict": "REJECTED"
+    },
+    {
+      "anchor": "at",
+      "case_id": "C8_NEW_HANDOVER_APPROVER_CAN_APPROVE",
+      "claim": {
+        "approval_actor": "acct.late.new-approver",
+        "at": "2026-11-27T01:05:00Z",
+        "case_id": "C8_NEW_HANDOVER_APPROVER_CAN_APPROVE",
+        "expected": "APPROVED",
+        "intake_actor": "acct.late.intake",
+        "org": "org.late"
+      },
+      "decision_minute_utc": "2026-11-27T01:05:00Z",
+      "distinct_acting_accounts": true,
+      "expected_verdict": "APPROVED",
+      "matches_expected": true,
+      "minute_graph": {
+        "active_delegations": [
+          {
+            "batch": "batch.late.night",
+            "delegate": "acct.late.new-approver",
+            "delegator": "acct.late.night-root",
+            "end": "2026-11-27T02:00:00Z",
+            "id": "del.late.approval.night-root-to-new",
+            "org": "org.late",
+            "role": "approval",
+            "start": "2026-11-27T01:00:00Z"
+          }
+        ],
+        "active_shifts": [
+          {
+            "account": "acct.late.night-root",
+            "end": "2026-11-27T02:00:00Z",
+            "id": "shift.late.approval.night",
+            "org": "org.late",
+            "role": "approval",
+            "start": "2026-11-27T01:00:00Z"
+          },
+          {
+            "account": "acct.late.intake",
+            "end": "2026-11-27T02:00:00Z",
+            "id": "shift.late.intake",
+            "org": "org.late",
+            "role": "intake",
+            "start": "2026-11-26T23:00:00Z"
+          }
+        ],
+        "effective_keys": [
+          "org.late|approval|acct.late.new-approver",
+          "org.late|approval|acct.late.night-root",
+          "org.late|intake|acct.late.intake"
+        ],
+        "holders": {
+          "org.late|approval": [
+            "acct.late.new-approver",
+            "acct.late.night-root"
+          ],
+          "org.late|intake": [
+            "acct.late.intake"
+          ]
+        },
+        "minute": "2026-11-27T01:05:00Z",
+        "org_filter": "org.late",
+        "proofs": {
+          "org.late|approval|acct.late.new-approver": {
+            "accounts": [
+              "acct.late.night-root",
+              "acct.late.new-approver"
+            ],
+            "batch_ids": [
+              "batch.late.night"
+            ],
+            "delegation_ids": [
+              "del.late.approval.night-root-to-new"
+            ],
+            "org": "org.late",
+            "role": "approval",
+            "shift_id": "shift.late.approval.night"
+          },
+          "org.late|approval|acct.late.night-root": {
+            "accounts": [
+              "acct.late.night-root"
+            ],
+            "batch_ids": [],
+            "delegation_ids": [],
+            "org": "org.late",
+            "role": "approval",
+            "shift_id": "shift.late.approval.night"
+          },
+          "org.late|intake|acct.late.intake": {
+            "accounts": [
+              "acct.late.intake"
+            ],
+            "batch_ids": [],
+            "delegation_ids": [],
+            "org": "org.late",
+            "role": "intake",
+            "shift_id": "shift.late.intake"
+          }
+        }
+      },
+      "org": "org.late",
+      "policy": "At the UTC minute when the claim is received by the reference monitor, each claimed actor must be reachable from an active shift through active delegations. Intervals are [start, end). A shared root/controller is evidence of convergence, not a veto.",
+      "reasons": [],
+      "role_evidence": {
+        "approval": {
+          "actor_effective": true,
+          "actual_controllers": [
+            "ctrl.late-night"
+          ],
+          "all_simple_proof_paths": [
+            {
+              "accounts": [
+                "acct.late.night-root",
+                "acct.late.new-approver"
+              ],
+              "delegation_ids": [
+                "del.late.approval.night-root-to-new"
+              ],
+              "length": 1,
+              "shift_id": "shift.late.approval.night"
+            }
+          ],
+          "claimed_actor": "acct.late.new-approver",
+          "effective_accounts": [
+            "acct.late.new-approver",
+            "acct.late.night-root"
+          ],
+          "root_accounts": [
+            "acct.late.night-root"
+          ],
+          "shortest_proof": {
+            "accounts": [
+              "acct.late.night-root",
+              "acct.late.new-approver"
+            ],
+            "batch_ids": [
+              "batch.late.night"
+            ],
+            "delegation_ids": [
+              "del.late.approval.night-root-to-new"
+            ],
+            "org": "org.late",
+            "role": "approval",
+            "shift_id": "shift.late.approval.night"
+          }
+        },
+        "intake": {
+          "actor_effective": true,
+          "actual_controllers": [
+            "ctrl.late-intake"
+          ],
+          "all_simple_proof_paths": [
+            {
+              "accounts": [
+                "acct.late.intake"
+              ],
+              "delegation_ids": [],
+              "length": 0,
+              "shift_id": "shift.late.intake"
+            }
+          ],
+          "claimed_actor": "acct.late.intake",
+          "effective_accounts": [
+            "acct.late.intake"
+          ],
+          "root_accounts": [
+            "acct.late.intake"
+          ],
+          "shortest_proof": {
+            "accounts": [
+              "acct.late.intake"
+            ],
+            "batch_ids": [],
+            "delegation_ids": [],
+            "org": "org.late",
+            "role": "intake",
+            "shift_id": "shift.late.intake"
+          }
+        }
+      },
+      "shared_actual_controllers": [],
+      "shared_controller_is_allowed_and_disclosed": false,
+      "verdict": "APPROVED"
+    }
+  ],
+  "endpoint_checks": [
+    {
+      "actual_covered": true,
+      "boundary": "start_inclusive",
+      "check_id": "shift.harbor.intake.controller:start_inclusive",
+      "collection": "shifts",
+      "expected_covered": true,
+      "minute_utc": "2026-11-26T22:00:00Z",
+      "passed": true,
+      "record_id": "shift.harbor.intake.controller"
+    },
+    {
+      "actual_covered": false,
+      "boundary": "end_exclusive",
+      "check_id": "shift.harbor.intake.controller:end_exclusive",
+      "collection": "shifts",
+      "expected_covered": false,
+      "minute_utc": "2026-11-27T02:00:00Z",
+      "passed": true,
+      "record_id": "shift.harbor.intake.controller"
+    },
+    {
+      "actual_covered": true,
+      "boundary": "start_inclusive",
+      "check_id": "shift.harbor.approval.controller:start_inclusive",
+      "collection": "shifts",
+      "expected_covered": true,
+      "minute_utc": "2026-11-26T22:00:00Z",
+      "passed": true,
+      "record_id": "shift.harbor.approval.controller"
+    },
+    {
+      "actual_covered": false,
+      "boundary": "end_exclusive",
+      "check_id": "shift.harbor.approval.controller:end_exclusive",
+      "collection": "shifts",
+      "expected_covered": false,
+      "minute_utc": "2026-11-27T02:00:00Z",
+      "passed": true,
+      "record_id": "shift.harbor.approval.controller"
+    },
+    {
+      "actual_covered": true,
+      "boundary": "start_inclusive",
+      "check_id": "shift.mutual.intake.root:start_inclusive",
+      "collection": "shifts",
+      "expected_covered": true,
+      "minute_utc": "2026-11-26T23:00:00Z",
+      "passed": true,
+      "record_id": "shift.mutual.intake.root"
+    },
+    {
+      "actual_covered": false,
+      "boundary": "end_exclusive",
+      "check_id": "shift.mutual.intake.root:end_exclusive",
+      "collection": "shifts",
+      "expected_covered": false,
+      "minute_utc": "2026-11-27T01:00:00Z",
+      "passed": true,
+      "record_id": "shift.mutual.intake.root"
+    },
+    {
+      "actual_covered": true,
+      "boundary": "start_inclusive",
+      "check_id": "shift.mutual.approval.root:start_inclusive",
+      "collection": "shifts",
+      "expected_covered": true,
+      "minute_utc": "2026-11-26T23:00:00Z",
+      "passed": true,
+      "record_id": "shift.mutual.approval.root"
+    },
+    {
+      "actual_covered": false,
+      "boundary": "end_exclusive",
+      "check_id": "shift.mutual.approval.root:end_exclusive",
+      "collection": "shifts",
+      "expected_covered": false,
+      "minute_utc": "2026-11-27T01:00:00Z",
+      "passed": true,
+      "record_id": "shift.mutual.approval.root"
+    },
+    {
+      "actual_covered": true,
+      "boundary": "start_inclusive",
+      "check_id": "shift.late.intake:start_inclusive",
+      "collection": "shifts",
+      "expected_covered": true,
+      "minute_utc": "2026-11-26T23:00:00Z",
+      "passed": true,
+      "record_id": "shift.late.intake"
+    },
+    {
+      "actual_covered": false,
+      "boundary": "end_exclusive",
+      "check_id": "shift.late.intake:end_exclusive",
+      "collection": "shifts",
+      "expected_covered": false,
+      "minute_utc": "2026-11-27T02:00:00Z",
+      "passed": true,
+      "record_id": "shift.late.intake"
+    },
+    {
+      "actual_covered": true,
+      "boundary": "start_inclusive",
+      "check_id": "shift.late.approval.day:start_inclusive",
+      "collection": "shifts",
+      "expected_covered": true,
+      "minute_utc": "2026-11-26T23:00:00Z",
+      "passed": true,
+      "record_id": "shift.late.approval.day"
+    },
+    {
+      "actual_covered": false,
+      "boundary": "end_exclusive",
+      "check_id": "shift.late.approval.day:end_exclusive",
+      "collection": "shifts",
+      "expected_covered": false,
+      "minute_utc": "2026-11-27T01:00:00Z",
+      "passed": true,
+      "record_id": "shift.late.approval.day"
+    },
+    {
+      "actual_covered": true,
+      "boundary": "start_inclusive",
+      "check_id": "shift.late.approval.night:start_inclusive",
+      "collection": "shifts",
+      "expected_covered": true,
+      "minute_utc": "2026-11-27T01:00:00Z",
+      "passed": true,
+      "record_id": "shift.late.approval.night"
+    },
+    {
+      "actual_covered": false,
+      "boundary": "end_exclusive",
+      "check_id": "shift.late.approval.night:end_exclusive",
+      "collection": "shifts",
+      "expected_covered": false,
+      "minute_utc": "2026-11-27T02:00:00Z",
+      "passed": true,
+      "record_id": "shift.late.approval.night"
+    },
+    {
+      "actual_covered": true,
+      "boundary": "start_inclusive",
+      "check_id": "shift.increment.approval.day-root:start_inclusive",
+      "collection": "shifts",
+      "expected_covered": true,
+      "minute_utc": "2026-11-26T23:00:00Z",
+      "passed": true,
+      "record_id": "shift.increment.approval.day-root"
+    },
+    {
+      "actual_covered": false,
+      "boundary": "end_exclusive",
+      "check_id": "shift.increment.approval.day-root:end_exclusive",
+      "collection": "shifts",
+      "expected_covered": false,
+      "minute_utc": "2026-11-27T01:00:00Z",
+      "passed": true,
+      "record_id": "shift.increment.approval.day-root"
+    },
+    {
+      "actual_covered": true,
+      "boundary": "start_inclusive",
+      "check_id": "shift.increment.intake.day-root:start_inclusive",
+      "collection": "shifts",
+      "expected_covered": true,
+      "minute_utc": "2026-11-26T23:00:00Z",
+      "passed": true,
+      "record_id": "shift.increment.intake.day-root"
+    },
+    {
+      "actual_covered": false,
+      "boundary": "end_exclusive",
+      "check_id": "shift.increment.intake.day-root:end_exclusive",
+      "collection": "shifts",
+      "expected_covered": false,
+      "minute_utc": "2026-11-27T01:00:00Z",
+      "passed": true,
+      "record_id": "shift.increment.intake.day-root"
+    },
+    {
+      "actual_covered": true,
+      "boundary": "start_inclusive",
+      "check_id": "del.harbor.intake.controller-to-chen:start_inclusive",
+      "collection": "delegations",
+      "expected_covered": true,
+      "minute_utc": "2026-11-26T23:30:00Z",
+      "passed": true,
+      "record_id": "del.harbor.intake.controller-to-chen"
+    },
+    {
+      "actual_covered": false,
+      "boundary": "end_exclusive",
+      "check_id": "del.harbor.intake.controller-to-chen:end_exclusive",
+      "collection": "delegations",
+      "expected_covered": false,
+      "minute_utc": "2026-11-27T00:30:00Z",
+      "passed": true,
+      "record_id": "del.harbor.intake.controller-to-chen"
+    },
+    {
+      "actual_covered": true,
+      "boundary": "start_inclusive",
+      "check_id": "del.harbor.intake.chen-to-lin:start_inclusive",
+      "collection": "delegations",
+      "expected_covered": true,
+      "minute_utc": "2026-11-26T23:30:00Z",
+      "passed": true,
+      "record_id": "del.harbor.intake.chen-to-lin"
+    },
+    {
+      "actual_covered": false,
+      "boundary": "end_exclusive",
+      "check_id": "del.harbor.intake.chen-to-lin:end_exclusive",
+      "collection": "delegations",
+      "expected_covered": false,
+      "minute_utc": "2026-11-27T00:30:00Z",
+      "passed": true,
+      "record_id": "del.harbor.intake.chen-to-lin"
+    },
+    {
+      "actual_covered": true,
+      "boundary": "start_inclusive",
+      "check_id": "del.harbor.approval.controller-to-wu:start_inclusive",
+      "collection": "delegations",
+      "expected_covered": true,
+      "minute_utc": "2026-11-26T23:00:00Z",
+      "passed": true,
+      "record_id": "del.harbor.approval.controller-to-wu"
+    },
+    {
+      "actual_covered": false,
+      "boundary": "end_exclusive",
+      "check_id": "del.harbor.approval.controller-to-wu:end_exclusive",
+      "collection": "delegations",
+      "expected_covered": false,
+      "minute_utc": "2026-11-27T01:00:00Z",
+      "passed": true,
+      "record_id": "del.harbor.approval.controller-to-wu"
+    },
+    {
+      "actual_covered": true,
+      "boundary": "start_inclusive",
+      "check_id": "del.harbor.approval.wu-to-shen:start_inclusive",
+      "collection": "delegations",
+      "expected_covered": true,
+      "minute_utc": "2026-11-26T23:00:00Z",
+      "passed": true,
+      "record_id": "del.harbor.approval.wu-to-shen"
+    },
+    {
+      "actual_covered": false,
+      "boundary": "end_exclusive",
+      "check_id": "del.harbor.approval.wu-to-shen:end_exclusive",
+      "collection": "delegations",
+      "expected_covered": false,
+      "minute_utc": "2026-11-27T01:00:00Z",
+      "passed": true,
+      "record_id": "del.harbor.approval.wu-to-shen"
+    },
+    {
+      "actual_covered": true,
+      "boundary": "start_inclusive",
+      "check_id": "del.harbor.approval.controller-to-zheng:start_inclusive",
+      "collection": "delegations",
+      "expected_covered": true,
+      "minute_utc": "2026-11-26T23:15:00Z",
+      "passed": true,
+      "record_id": "del.harbor.approval.controller-to-zheng"
+    },
+    {
+      "actual_covered": false,
+      "boundary": "end_exclusive",
+      "check_id": "del.harbor.approval.controller-to-zheng:end_exclusive",
+      "collection": "delegations",
+      "expected_covered": false,
+      "minute_utc": "2026-11-27T00:45:00Z",
+      "passed": true,
+      "record_id": "del.harbor.approval.controller-to-zheng"
+    },
+    {
+      "actual_covered": true,
+      "boundary": "start_inclusive",
+      "check_id": "del.harbor.approval.zheng-to-shen:start_inclusive",
+      "collection": "delegations",
+      "expected_covered": true,
+      "minute_utc": "2026-11-26T23:15:00Z",
+      "passed": true,
+      "record_id": "del.harbor.approval.zheng-to-shen"
+    },
+    {
+      "actual_covered": false,
+      "boundary": "end_exclusive",
+      "check_id": "del.harbor.approval.zheng-to-shen:end_exclusive",
+      "collection": "delegations",
+      "expected_covered": false,
+      "minute_utc": "2026-11-27T00:45:00Z",
+      "passed": true,
+      "record_id": "del.harbor.approval.zheng-to-shen"
+    },
+    {
+      "actual_covered": true,
+      "boundary": "start_inclusive",
+      "check_id": "del.ring.a-to-b:start_inclusive",
+      "collection": "delegations",
+      "expected_covered": true,
+      "minute_utc": "2026-11-26T23:00:00Z",
+      "passed": true,
+      "record_id": "del.ring.a-to-b"
+    },
+    {
+      "actual_covered": false,
+      "boundary": "end_exclusive",
+      "check_id": "del.ring.a-to-b:end_exclusive",
+      "collection": "delegations",
+      "expected_covered": false,
+      "minute_utc": "2026-11-27T01:00:00Z",
+      "passed": true,
+      "record_id": "del.ring.a-to-b"
+    },
+    {
+      "actual_covered": true,
+      "boundary": "start_inclusive",
+      "check_id": "del.ring.b-to-c:start_inclusive",
+      "collection": "delegations",
+      "expected_covered": true,
+      "minute_utc": "2026-11-26T23:00:00Z",
+      "passed": true,
+      "record_id": "del.ring.b-to-c"
+    },
+    {
+      "actual_covered": false,
+      "boundary": "end_exclusive",
+      "check_id": "del.ring.b-to-c:end_exclusive",
+      "collection": "delegations",
+      "expected_covered": false,
+      "minute_utc": "2026-11-27T01:00:00Z",
+      "passed": true,
+      "record_id": "del.ring.b-to-c"
+    },
+    {
+      "actual_covered": true,
+      "boundary": "start_inclusive",
+      "check_id": "del.ring.c-to-a:start_inclusive",
+      "collection": "delegations",
+      "expected_covered": true,
+      "minute_utc": "2026-11-26T23:00:00Z",
+      "passed": true,
+      "record_id": "del.ring.c-to-a"
+    },
+    {
+      "actual_covered": false,
+      "boundary": "end_exclusive",
+      "check_id": "del.ring.c-to-a:end_exclusive",
+      "collection": "delegations",
+      "expected_covered": false,
+      "minute_utc": "2026-11-27T01:00:00Z",
+      "passed": true,
+      "record_id": "del.ring.c-to-a"
+    },
+    {
+      "actual_covered": true,
+      "boundary": "start_inclusive",
+      "check_id": "del.mutual.approval.root-to-x:start_inclusive",
+      "collection": "delegations",
+      "expected_covered": true,
+      "minute_utc": "2026-11-26T23:30:00Z",
+      "passed": true,
+      "record_id": "del.mutual.approval.root-to-x"
+    },
+    {
+      "actual_covered": false,
+      "boundary": "end_exclusive",
+      "check_id": "del.mutual.approval.root-to-x:end_exclusive",
+      "collection": "delegations",
+      "expected_covered": false,
+      "minute_utc": "2026-11-27T00:30:00Z",
+      "passed": true,
+      "record_id": "del.mutual.approval.root-to-x"
+    },
+    {
+      "actual_covered": true,
+      "boundary": "start_inclusive",
+      "check_id": "del.mutual.approval.x-to-y:start_inclusive",
+      "collection": "delegations",
+      "expected_covered": true,
+      "minute_utc": "2026-11-26T23:30:00Z",
+      "passed": true,
+      "record_id": "del.mutual.approval.x-to-y"
+    },
+    {
+      "actual_covered": false,
+      "boundary": "end_exclusive",
+      "check_id": "del.mutual.approval.x-to-y:end_exclusive",
+      "collection": "delegations",
+      "expected_covered": false,
+      "minute_utc": "2026-11-27T00:30:00Z",
+      "passed": true,
+      "record_id": "del.mutual.approval.x-to-y"
+    },
+    {
+      "actual_covered": true,
+      "boundary": "start_inclusive",
+      "check_id": "del.mutual.approval.y-to-x:start_inclusive",
+      "collection": "delegations",
+      "expected_covered": true,
+      "minute_utc": "2026-11-26T23:30:00Z",
+      "passed": true,
+      "record_id": "del.mutual.approval.y-to-x"
+    },
+    {
+      "actual_covered": false,
+      "boundary": "end_exclusive",
+      "check_id": "del.mutual.approval.y-to-x:end_exclusive",
+      "collection": "delegations",
+      "expected_covered": false,
+      "minute_utc": "2026-11-27T00:30:00Z",
+      "passed": true,
+      "record_id": "del.mutual.approval.y-to-x"
+    },
+    {
+      "actual_covered": true,
+      "boundary": "start_inclusive",
+      "check_id": "del.late.approval.day-root-to-old:start_inclusive",
+      "collection": "delegations",
+      "expected_covered": true,
+      "minute_utc": "2026-11-26T23:00:00Z",
+      "passed": true,
+      "record_id": "del.late.approval.day-root-to-old"
+    },
+    {
+      "actual_covered": false,
+      "boundary": "end_exclusive",
+      "check_id": "del.late.approval.day-root-to-old:end_exclusive",
+      "collection": "delegations",
+      "expected_covered": false,
+      "minute_utc": "2026-11-27T01:00:00Z",
+      "passed": true,
+      "record_id": "del.late.approval.day-root-to-old"
+    },
+    {
+      "actual_covered": true,
+      "boundary": "start_inclusive",
+      "check_id": "del.late.approval.night-root-to-new:start_inclusive",
+      "collection": "delegations",
+      "expected_covered": true,
+      "minute_utc": "2026-11-27T01:00:00Z",
+      "passed": true,
+      "record_id": "del.late.approval.night-root-to-new"
+    },
+    {
+      "actual_covered": false,
+      "boundary": "end_exclusive",
+      "check_id": "del.late.approval.night-root-to-new:end_exclusive",
+      "collection": "delegations",
+      "expected_covered": false,
+      "minute_utc": "2026-11-27T02:00:00Z",
+      "passed": true,
+      "record_id": "del.late.approval.night-root-to-new"
+    },
+    {
+      "actual_covered": true,
+      "boundary": "start_inclusive",
+      "check_id": "del.increment.approval.day-root-to-approver:start_inclusive",
+      "collection": "delegations",
+      "expected_covered": true,
+      "minute_utc": "2026-11-26T23:00:00Z",
+      "passed": true,
+      "record_id": "del.increment.approval.day-root-to-approver"
+    },
+    {
+      "actual_covered": false,
+      "boundary": "end_exclusive",
+      "check_id": "del.increment.approval.day-root-to-approver:end_exclusive",
+      "collection": "delegations",
+      "expected_covered": false,
+      "minute_utc": "2026-11-27T01:00:00Z",
+      "passed": true,
+      "record_id": "del.increment.approval.day-root-to-approver"
+    },
+    {
+      "actual_covered": true,
+      "boundary": "start_inclusive",
+      "check_id": "del.increment.intake.day-root-to-intake:start_inclusive",
+      "collection": "delegations",
+      "expected_covered": true,
+      "minute_utc": "2026-11-26T23:00:00Z",
+      "passed": true,
+      "record_id": "del.increment.intake.day-root-to-intake"
+    },
+    {
+      "actual_covered": false,
+      "boundary": "end_exclusive",
+      "check_id": "del.increment.intake.day-root-to-intake:end_exclusive",
+      "collection": "delegations",
+      "expected_covered": false,
+      "minute_utc": "2026-11-27T01:00:00Z",
+      "passed": true,
+      "record_id": "del.increment.intake.day-root-to-intake"
+    },
+    {
+      "actual_covered": true,
+      "boundary": "start_inclusive",
+      "check_id": "del.increment.approval.night-root-to-approver:start_inclusive",
+      "collection": "delegations",
+      "expected_covered": true,
+      "minute_utc": "2026-11-27T01:00:00Z",
+      "passed": true,
+      "record_id": "del.increment.approval.night-root-to-approver"
+    },
+    {
+      "actual_covered": false,
+      "boundary": "end_exclusive",
+      "check_id": "del.increment.approval.night-root-to-approver:end_exclusive",
+      "collection": "delegations",
+      "expected_covered": false,
+      "minute_utc": "2026-11-27T02:00:00Z",
+      "passed": true,
+      "record_id": "del.increment.approval.night-root-to-approver"
+    }
+  ],
+  "incremental": {
+    "actual_added_fills": 120,
+    "actual_count_after_incremental_patch": 2430,
+    "affected_orgs": [
+      "org.increment"
+    ],
+    "affected_relation_keys": [
+      "org.increment|approval|acct.inc.night-approver",
+      "org.increment|approval|acct.inc.night-root"
+    ],
+    "baseline_total_count": 2310,
+    "change_description": "Add one original approval shift seed at org.increment for the night handover.",
+    "counts_equal": true,
+    "exact_minute_holder_state_equal": true,
+    "full_recomputed_count_after_patch": 2430,
+    "full_state_sha256": "cee288b528afaafdeced6a4aad06715aa37ce44eb8ea30ec056e7cd6cf42ff20",
+    "incremental_state_sha256": "cee288b528afaafdeced6a4aad06715aa37ce44eb8ea30ec056e7cd6cf42ff20",
+    "new_org_counts": {
+      "org.increment": 600
+    },
+    "org_count": 5,
+    "passed": true,
+    "patch_shift": {
+      "account": "acct.inc.night-root",
+      "end": "2026-11-27T02:00:00Z",
+      "id": "shift.increment.approval.night-root-PATCH",
+      "org": "org.increment",
+      "role": "approval",
+      "start": "2026-11-27T01:00:00Z"
+    },
+    "post_patch_recomputed_orgs": [
+      "org.increment"
+    ],
+    "previous_org_counts": {
+      "org.increment": 480
+    },
+    "recomputed_org_count": 1,
+    "state_hashes_equal": true,
+    "unaffected_orgs_not_recomputed": [
+      "org.harbor",
+      "org.late",
+      "org.mutual",
+      "org.ring"
+    ]
+  },
+  "input_file": "data/synthetic_duty.json",
+  "input_sha256": "a67b7146db4236a17928596c93790cecb009c190d9697290c81a7f030b6b940f",
+  "minute_enumeration": {
+    "csv_file": "minute_roles.csv",
+    "csv_sha256": "e4175452c888618da9104f8416854ca323c00a0f8a43f958a9dbc44b53231b21",
+    "end_exclusive_utc": "2026-11-27T02:00:00Z",
+    "fill_count": 2310,
+    "minute_count": 240,
+    "start_utc": "2026-11-26T22:00:00Z"
+  },
+  "occupancy_checks": [
+    {
+      "account": "acct.harbor.lin",
+      "actual_effective": false,
+      "expected_effective": false,
+      "id": "O1_HARBOR_INTAKE_BEFORE_START",
+      "minute": "2026-11-26T23:29:00Z",
+      "minute_utc": "2026-11-26T23:29:00Z",
+      "org": "org.harbor",
+      "passed": true,
+      "role": "intake"
+    },
+    {
+      "account": "acct.harbor.lin",
+      "actual_effective": true,
+      "expected_effective": true,
+      "id": "O2_HARBOR_INTAKE_START_INCLUDED",
+      "minute": "2026-11-26T23:30:00Z",
+      "minute_utc": "2026-11-26T23:30:00Z",
+      "org": "org.harbor",
+      "passed": true,
+      "role": "intake"
+    },
+    {
+      "account": "acct.harbor.lin",
+      "actual_effective": true,
+      "expected_effective": true,
+      "id": "O3_HARBOR_INTAKE_LAST_INSIDE_MINUTE",
+      "minute": "2026-11-27T00:29:00Z",
+      "minute_utc": "2026-11-27T00:29:00Z",
+      "org": "org.harbor",
+      "passed": true,
+      "role": "intake"
+    },
+    {
+      "account": "acct.harbor.lin",
+      "actual_effective": false,
+      "expected_effective": false,
+      "id": "O4_HARBOR_INTAKE_END_EXCLUDED",
+      "minute": "2026-11-27T00:30:00Z",
+      "minute_utc": "2026-11-27T00:30:00Z",
+      "org": "org.harbor",
+      "passed": true,
+      "role": "intake"
+    },
+    {
+      "account": "acct.late.old-approver",
+      "actual_effective": true,
+      "expected_effective": true,
+      "id": "O5_LATE_OLD_APPROVER_LAST_INSIDE_MINUTE",
+      "minute": "2026-11-27T00:59:00Z",
+      "minute_utc": "2026-11-27T00:59:00Z",
+      "org": "org.late",
+      "passed": true,
+      "role": "approval"
+    },
+    {
+      "account": "acct.late.old-approver",
+      "actual_effective": false,
+      "expected_effective": false,
+      "id": "O6_LATE_OLD_APPROVER_HANDOVER_EXCLUDED",
+      "minute": "2026-11-27T01:00:00Z",
+      "minute_utc": "2026-11-27T01:00:00Z",
+      "org": "org.late",
+      "passed": true,
+      "role": "approval"
+    },
+    {
+      "account": "acct.inc.night-approver",
+      "actual_effective": false,
+      "expected_effective": false,
+      "id": "O7_INCREMENT_NIGHT_DELEGATION_DORMANT_WITHOUT_SHIFT",
+      "minute": "2026-11-27T01:00:00Z",
+      "minute_utc": "2026-11-27T01:00:00Z",
+      "org": "org.increment",
+      "passed": true,
+      "role": "approval"
+    }
+  ],
+  "python_version": "3.12.1",
+  "schema": "duty-audit-evidence/v1",
+  "timezone_rule": "All timestamps are UTC; minute label t represents [t, t+60s)."
+}
